@@ -1,3 +1,16 @@
-Artist Duet
-EZ fishing
-Multimedia Historian
+Artist Duet: 
+Send in a tunes made by an amateur to an api to return an artist profile which is then used to find known artists that match 
+the style. Using Galiboo, we can get this type of data from a song. We can use bandcamp to gather user song info, and Galiboo
+twice to get this info and then compare to artists?
+https://www.programmableweb.com/api/galiboo-music
+https://developer.spotify.com/documentation/web-api/reference/artists/get-artist/
+
+Multimedia Historian:
+Based on the historic books the user puts into the website, we create a historic profile for them which then outputs for them
+a historic figure they would be interested in following along with multimedia they would like. For example: a user have read 
+a lot of civil war books and our application matches them Abraham lincoln and tells them to read certain books and watch
+certain documentaries.
+
+EZ fishing:
+Using 2 apis give the fisherman three data points based on their location: nearby location based on the type of fish, 
+best time of the day to fish there and bets bait and method to use.
