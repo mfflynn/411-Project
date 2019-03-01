@@ -1,0 +1,11 @@
+As a non-logged-in user, I want to be able to have the option of creating a new account or logging-in to an existing account so that I can become a logged-in user.
+    -If there is an error typing credentials on a log-in, it should reprompt the user, telling them that the username or           password is not recognized. 
+    -If the username is already taken, it should reprompt the user, asking for a different username.
+
+As any type of user, I want to be able to input an artist on Bandcamp, and receive output of Spotify-recommended songs or artists, so that I can find similar music to the music that I have as my input. 
+    -If the Bandcamp artist is not found, it should inform the user and give the user an option to choose a different artist.     -After the result is found, a non-logged-in user will be prompted to sign in or create an account (see user log-in story)     so that they can save their results.
+
+As a logged-in user, I want to be able to access the previous recommendation results associated with my account history, so that I do not have to find these matches again manually.
+    -If there is nothing found the user will be alerted that the recommendation results could not be found.
+
+As a logged-in user, I want to be able to delete recommendation results from my account history, if I no longer have interest in that artist.
