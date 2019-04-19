@@ -1,7 +1,6 @@
 {
-  "name": "duet",
+  "name": "411project",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,5 +11,17 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "xmlhttprequest": "^1.8.0"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfflynn/411-Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mfflynn/411-Project/issues"
+  },
+  "homepage": "https://github.com/mfflynn/411-Project#readme",
+  "description": ""
 }
