@@ -1,3 +1,8 @@
+*Spotify to Youtube:
+This app takes a Spotify playlist url as input, and outputs a list of Youtube videos of the songs on the playlist. In addition, it creates a playlist on the user's account which has each of the songs, translating a Spotify playlist into a Youtube music playlist. This can be of particular use to people who, for whatever reason, no longer want to or are able to use Spotify, but they want to keep their playlists.
+*This is the app we have chosen
+
+
 Artist Duet: 
 Send in a tunes made by an amateur to an api to return an artist profile which is then used to find known artists that match 
 the style. Using Galiboo, we can get this type of data from a song. We can use bandcamp to gather user song info, and Galiboo
@@ -14,3 +19,4 @@ certain documentaries.
 EZ fishing:
 Using 2 apis give the fisherman three data points based on their location: nearby location based on the type of fish, 
 best time of the day to fish there and bets bait and method to use.
+

@@ -1,0 +1,11 @@
+For our project, we are using a stack of:
+Mongo, Express, and Node
+We use normal JS, CSS, and HTML for the front end.
+
+The reason we are using node.js is because of two reasons. None of us had major experience using Javascript, but since our front end needed to be written in JS anyway, we wanted to keep our app unified in it's language, rather than try to rely on something we already knew, such as python for the backend, we could learn something new by using node.js, and the bonus of this is that the app would be cohesive. The secondary reason that we chose node.js is that is seemed to have a very intuitive package management system, and we wanted to be able to take advantage of this with our app, in case we discovered an unexpected need, we would be able to use node to quickly add this element to our project.
+
+The reason that we chose Mongo for our database is that we wanted a lightweight database solution because the database element of our app is not super critical to the function of the app, and we didn't want to overcomplicate the database. We didn't have experience using databases, and so we wanted to learn a new database, we chose Mongo and found that it seemed to be a good answer to our need for a databse.
+
+The reason we are using Express is that it helped us with routing the application. We needed to make many calls to our backend, and even though the user only puts in a minimal amount of information, the backend has a relatively complicated series of instructions that need to be routed through it. We wanted a tool that would help us handle this,without making the code more complicated than necessary, and after researching routing backend frameworks, we found that Express was one that would work well with node.js.
+
+We use normal JS, CSS, and HTML rather than Angular or React for the front end, because visually our app is very simple, and a complicated front end is not necessary for our purposes. Most of what happens is on the back-end, out of the user's view. We didn't feel that we needed to incorporate front-end libraries/frameworks.
