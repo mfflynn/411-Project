@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 router.get('/',function(req,res){
-    const submissionY = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.readonly&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth2callback&response_type=code&client_id="+youtclientid;
+    const submissionY = "https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth2callback&response_type=code&client_id="+youtclientid;
     res.redirect(submissionY);
 });
 
@@ -86,7 +86,20 @@ router.get('/getjson/:playlistid',function(req,res){
             res.send(jsonResponse);
         }
     }
+})
 
+router.get('/getname/:playlistid',function(req,res){
+	const xmlHttp = new XMLHttpRequest();
+    const submission = "https://api.spotify.com/v1/playlists/"+req.params["playlistid"];
+    xmlHttp.open( "GET", submission, true );
+    xmlHttp.setRequestHeader("Authorization", "Bearer " + tempkey);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange=function(){
+        if(this.readyState == 4){
+            const jsonResponse = JSON.parse(xmlHttp.responseText);
+            res.send(jsonResponse);
+        }
+    }
 })
 
 router.get('/getyoutube/:songInfo',function(req,res){
@@ -102,6 +115,45 @@ router.get('/getyoutube/:songInfo',function(req,res){
             res.send(jsonResponse);
         }
     }
+
+})
+
+router.get('/addsong/:playListInfo/:songInfo/:songNum',function(req,res){
+	const xmlHttp = new XMLHttpRequest();
+    const submission = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet";
+
+	xmlHttp.open( "POST", submission, true );
+    xmlHttp.setRequestHeader("Authorization", "Bearer " + youtrealcode);
+	xmlHttp.setRequestHeader("Accept", "application/json");
+	xmlHttp.setRequestHeader("Content-Type", "application/json");
+	//console.log(JSON.stringify({"snippet": {"playlistId": req.params["playListInfo"],"resourceId": req.params["songInfo"]}}));
+    xmlHttp.onreadystatechange=function(){
+        if(this.readyState == 4){
+            console.log("songsend results:");
+			console.log(xmlHttp.responseText);
+        }
+    }
+	xmlHttp.send(JSON.stringify({"snippet": {"playlistId": req.params["playListInfo"],"position":req.params["songNum"],"resourceId": {"kind": "youtube#video","videoId": req.params["songInfo"]}}}));
+    
+})
+
+router.get('/newPlaylist/:playListName',function(req,res){
+	const xmlHttp = new XMLHttpRequest();
+    const submission = "https://www.googleapis.com/youtube/v3/playlists?part=snippet%2Cstatus";
+    xmlHttp.open( "POST", submission, true );
+    xmlHttp.setRequestHeader("Authorization", "Bearer " + youtrealcode);
+	xmlHttp.setRequestHeader("Accept", "application/json");
+	xmlHttp.setRequestHeader("Content-Type", "application/json");
+	xmlHttp.onreadystatechange=function(){
+        if(this.readyState == 4){
+            console.log("playlist results:");
+			console.log(xmlHttp.responseText);
+            const jsonResponse = JSON.parse(xmlHttp.responseText);
+            res.send(jsonResponse);
+        }
+    }
+    xmlHttp.send(JSON.stringify({"snippet": {"title": req.params["playListName"],"description": "New playlist description"},"status": {"privacyStatus": "public"}}));
+	
 
 })
 

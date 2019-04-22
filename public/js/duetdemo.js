@@ -1,20 +1,35 @@
 
 
 function sendPlaylist(){
+	const playlistid = document.getElementById("playlistid").value;
+	var playName = 'New Playlist';
+	
 	const xmlHttp = new XMLHttpRequest();
-    const playlistid = document.getElementById("playlistid").value;
-    xmlHttp.open( "GET", "/getjson/"+playlistid, true );
-    xmlHttp.send();
-    xmlHttp.onreadystatechange=function(){
-        if(this.readyState == 4){
-            displayPlaylist(JSON.parse(xmlHttp.responseText));
-        }
-    }
+	xmlHttp.open( "GET", "/getjson/"+playlistid, true );
+	
+	const xmlHttpName = new XMLHttpRequest();
+	xmlHttpName.open( "GET", "/getname/"+playlistid, true );
+
+	xmlHttp.onreadystatechange=function(){
+		if(this.readyState == 4){
+			displayPlaylist(JSON.parse(xmlHttp.responseText),playName);
+		}
+	}
+	xmlHttpName.onreadystatechange=function(){
+		if(this.readyState == 4){
+			playName = JSON.parse(xmlHttpName.responseText)["name"]
+			xmlHttp.send();
+			
+		}
+	}
+	xmlHttpName.send();
+
+
     
     return
 }
 
-function displayPlaylist(jsonData){
+function displayPlaylist(jsonData,playName){
     output = "";
     songInfo = [];
     artistInfo = [];
@@ -29,17 +44,15 @@ function displayPlaylist(jsonData){
         output = output + "<p>" + songInfo[i] + " by " + artistInfo[i] + "<p>"
     }
     document.getElementById("dataspot").innerHTML = output;
-    console.log("HEEEERE1");
-    findYoutube(songInfo, artistInfo, songNums);
+    findYoutube(songInfo, artistInfo, songNums, playName);
     
 }
 
-function findYoutube(songInfo, artistInfo, songNums){
+function findYoutube(songInfo, artistInfo, songNums, playName){
     console.log("paramSI");
     console.log(songInfo);
     toDisplay = [];
     for (i = 0; i < songInfo.length; i++){
-        console.log("HEEEERE1");
         const xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", "/getyoutube/"+encodeURIComponent(songInfo[i] + " " + artistInfo[i]), true );
         xmlHttp.send();
@@ -54,6 +67,7 @@ function findYoutube(songInfo, artistInfo, songNums){
 
                 if(songNums==toDisplay.length){
                     console.log("finalReached");
+					makePlaylist(toDisplay,playName);
                     displayYout(toDisplay);
                 }
             }
@@ -71,4 +85,26 @@ function displayYout(jsonData){
     }
     document.getElementById("datayout").innerHTML = output;
     
+}
+
+function makePlaylist(jsonData,name){
+    var playlistLink = "nah";
+	var playlistID = "0";
+	const xmlHttp = new XMLHttpRequest();
+	xmlHttp.open( "GET", "/newPlaylist/"+name, true );
+    xmlHttp.send();
+	xmlHttp.onreadystatechange=function(){
+        if(this.readyState == 4){
+			playlistID = JSON.parse(xmlHttp.responseText)["id"];
+			console.log("playlistID");
+			console.log(playlistID);
+			playlistLink = "https://www.youtube.com/playlist?list="+playlistID;
+			document.getElementById("playlisturl").innerHTML = "<a href='"+ playlistLink +"'>Playlist is here!</a>";
+			for (i = 0; i < jsonData.length; i++){
+				const xmlHttpSongSend = new XMLHttpRequest();
+				xmlHttpSongSend.open( "GET", "/addsong/"+playlistID+"/"+encodeURIComponent(jsonData[i].items[0].id.videoId)+"/"+i, true );
+				xmlHttpSongSend.send();
+			}
+		}
+	}
 }
