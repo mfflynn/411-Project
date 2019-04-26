@@ -4,35 +4,45 @@
 }
 
 body{
-	background-color: #CD72FF;
+	background-color: #36454f;
+    background-image: url("duet.jpg");
 }
 
 h1{
-	color: #9BEEFF;
-	font-size:80px
+	text-shadow: 1px 1px 1px #ccc;
+	font-family: 'Gugi', cursive;
+	color: #000000;
+	font-size:100px
 }
 
 .profile{
-	width: 20%;
+	font-family: 'Gugi', cursive;
+	width: 30%;
 	margin: 0 auto;
 }
 
 .menuButton{
+	font-family: 'Gugi', cursive;
+	box-shadow: 0 0 1em 1em #ccc;
 	background-color: #cd853f;
 	color: white;
 	border: none;
+	border-style: double
 	cursor: pointer;
-	width: 16%;
+	width: 20%;
 }
 .menuButton:hover {
+	font-family: 'Gugi', cursive;
     background-color: #ff4000;
 }
 
 @media only screen and (max-width: 600px) {
     .menuButton {
-        width: 30%;
+		font-family: 'Gugi', cursive;
+        width: 50%;
     }
 	.profile{
+		font-family: 'Gugi', cursive;
         width: 60%;
         margin: 0 auto;
     }
@@ -41,6 +51,7 @@ h1{
 
 @media only screen and (max-width: 1000px) {
 	h1{
+		font-family: 'Gugi', cursive;
 		font-size: 7.5vw;
 	}
 	
