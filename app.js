@@ -173,7 +173,7 @@ router.get('/getyoutube/:songInfo',function(req,res) {
                 xmlHttp.onreadystatechange = function () {
                     if (this.readyState == 4) {
                         console.log(xmlHttp.responseText);
-                        const jsonResponse = JSON.parse(xmlHttp.responseText);
+                        const jsonResponse = JSON.parse(xmlHttp.responseText).items[0].id.videoId;
 
 
                         MongoClient.connect(url, function (err, db) {
@@ -212,14 +212,22 @@ router.get('/addsong/:playListInfo/:songInfo/:songNum',function(req,res){
 	xmlHttp.setRequestHeader("Accept", "application/json");
 	xmlHttp.setRequestHeader("Content-Type", "application/json");
 	//console.log(JSON.stringify({"snippet": {"playlistId": req.params["playListInfo"],"resourceId": req.params["songInfo"]}}));
-    xmlHttp.onreadystatechange=function(){
+    console.log("sending NUM",req.params["songNum"]);
+
+	xmlHttp.onreadystatechange=function(){
         if(this.readyState == 4){
             console.log("songsend results:");
 			console.log(xmlHttp.responseText);
+			
         }
     }
+	
+	var delayInMilliseconds = 500*req.params["songNum"]; 
+	setTimeout(function() {
 	xmlHttp.send(JSON.stringify({"snippet": {"playlistId": req.params["playListInfo"],"position":req.params["songNum"],"resourceId": {"kind": "youtube#video","videoId": req.params["songInfo"]}}}));
     
+	}, delayInMilliseconds);
+	
 })
 
 router.get('/newPlaylist/:playListName',function(req,res){
