@@ -15,15 +15,12 @@ h1{
 	font-size:100px
 }
 
-.profile{
-	font-family: 'Gugi', cursive;
-	width: 30%;
-	margin: 0 auto;
+.inputField{
+	width: 20%;
 }
 
 .menuButton{
 	font-family: 'Gugi', cursive;
-	box-shadow: 0 0 1em 1em #ccc;
 	background-color: #cd853f;
 	color: white;
 	border: none;
@@ -41,11 +38,10 @@ h1{
 		font-family: 'Gugi', cursive;
         width: 50%;
     }
-	.profile{
-		font-family: 'Gugi', cursive;
-        width: 60%;
-        margin: 0 auto;
-    }
+	.inputField{
+		width: 50%;
+	}
+}
 
 }
 
