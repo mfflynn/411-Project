@@ -60,10 +60,8 @@ function findYoutube(songInfo, artistInfo, songNums, playName){
             if(this.readyState == 4){
                 console.log(songInfo[i]);
                 //displayYout(JSON.parse(xmlHttp.responseText));
-                toDisplay.push(JSON.parse(xmlHttp.responseText));
-                console.log(toDisplay);
+                toDisplay.push(xmlHttp.responseText);
 
-                console.log(toDisplay.length);
 
                 if(songNums==toDisplay.length){
                     console.log("finalReached");
@@ -77,17 +75,17 @@ function findYoutube(songInfo, artistInfo, songNums, playName){
 
 }
 
-function displayYout(jsonData){
+function displayYout(vidids){
     output="";
-    for (i = 0; i < jsonData.length; i++){
-        console.log(jsonData[i].items[0].id.videoId);
-        output+="<p><iframe width='560' height='315' src='https://www.youtube.com/embed/" + jsonData[i].items[0].id.videoId+ "' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></p>";
+    for (i = 0; i < vidids.length; i++){
+        console.log(vidids[i]);
+        output+="<p><iframe width='560' height='315' src='https://www.youtube.com/embed/" + vidids[i]+ "' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></p>";
     }
     document.getElementById("datayout").innerHTML = output;
     
 }
 
-function makePlaylist(jsonData,name){
+function makePlaylist(vidids,name){
     var playlistLink = "nah";
 	var playlistID = "0";
 	const xmlHttp = new XMLHttpRequest();
@@ -100,10 +98,13 @@ function makePlaylist(jsonData,name){
 			console.log(playlistID);
 			playlistLink = "https://www.youtube.com/playlist?list="+playlistID;
 			document.getElementById("playlisturl").innerHTML = "<a href='"+ playlistLink +"'>Playlist is here!</a>";
-			for (i = 0; i < jsonData.length; i++){
+			for (i = 0; i < vidids.length; i++){
+				//var delayInMilliseconds = 1000; 
+				//setTimeout(function() {
 				const xmlHttpSongSend = new XMLHttpRequest();
-				xmlHttpSongSend.open( "GET", "/addsong/"+playlistID+"/"+encodeURIComponent(jsonData[i].items[0].id.videoId)+"/"+i, true );
+				xmlHttpSongSend.open( "GET", "/addsong/"+playlistID+"/"+encodeURIComponent(vidids[i])+"/"+i, true );
 				xmlHttpSongSend.send();
+				//}, delayInMilliseconds);
 			}
 		}
 	}
