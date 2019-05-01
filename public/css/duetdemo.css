@@ -15,6 +15,25 @@ h1{
 	font-size:100px
 }
 
+/* unvisited link */
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: orange;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: orange;
+}
 .inputField{
 	width: 20%;
 }
