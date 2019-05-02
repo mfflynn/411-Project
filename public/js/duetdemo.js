@@ -1,7 +1,7 @@
 
 
 function sendPlaylist(){
-	const playlistid = document.getElementById("playlistid").value;
+	const playlistid = escape(document.getElementById("playlistid").value);
 	var playName = 'New Playlist';
 	
 	const xmlHttp = new XMLHttpRequest();
