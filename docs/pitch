@@ -20,3 +20,7 @@ EZ fishing:
 Using 2 apis give the fisherman three data points based on their location: nearby location based on the type of fish, 
 best time of the day to fish there and bets bait and method to use.
 
+Duet:
+Take the songs from a spotify playlist, find the corresponding youtube videos for those songs, and create a playlist on the 
+person's youtube account. This allows the user to transfer their playlists from spotify to youtube. Once the youtube
+playlist is made, the playlist can be seen in the Youtube music app.
